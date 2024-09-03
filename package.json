@@ -1,0 +1,22 @@
+{
+  "name": "pokedexapi",
+  "version": "1.0.0",
+  "description": "A server pokedex",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "pokedex",
+    "api"
+  ],
+  "author": "Da Silva Pinto Kevin",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-async-handler": "^1.2.0",
+    "mongoose": "^8.6.0",
+    "nodemon": "^3.1.4"
+  }
+}
