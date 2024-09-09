@@ -2,6 +2,7 @@ const express = require('express');
 const {errorHandler} = require("./middleware/errorHandler");
 const mongoose = require("mongoose");
 const connectDB = require("./config/dbConnection");
+const cookieParser = require('cookie-parser');
 const app = express();
 require('dotenv').config();
 const PORT = process.env.PORT || 5000;
@@ -12,10 +13,13 @@ connectDB();
 // SERVER CONFIG
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 // ROUTES
 // ROUTE - pokemon
 app.use('/api/pokemon', require('./routes/pokemonRoutes'));
+// ROUTE - user
+app.use('/api/user', require('./routes/userRoutes'));
 
 // DISPLAY ERRORS STACK IN DEV
 app.use(errorHandler);
