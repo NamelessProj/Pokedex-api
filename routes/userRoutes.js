@@ -26,6 +26,6 @@ router.route('/profile').put(protect, userController.updateUserProfile);
 // @route User route (GET)
 // @desc Route to get the profile of a user
 // @access Private
-router.route('/profile/:_id').get(userController.getUserProfile);
+router.route('/profile/:_id').get(protect, userController.getUserProfile);
 
 module.exports = router;

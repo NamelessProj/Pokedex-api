@@ -56,11 +56,12 @@ const register = asyncHandler(async (req, res) => {
     });
 
     if(user){
+        generateToken(res, user._id);
         res.status(201).json({
             _id: user._id,
             last_name: user.last_name,
             first_name: user.first_name,
-            email: user.email
+            email: user.email,
         });
     }else{
         res.status(400);
@@ -72,7 +73,7 @@ const register = asyncHandler(async (req, res) => {
 // @route PUT /api/user/profile
 // @access Private
 const updateUserProfile = asyncHandler(async (req, res) => {
-    const user = await User.findById(req.body._id);
+    const user = await User.findById(req.user._id);
 
     if(!user){
         res.status(400);
