@@ -19,8 +19,7 @@ const login = asyncHandler(async (req, res) => {
         generateToken(res, user._id);
         res.status(201).json({
             _id: user._id,
-            last_name: user.last_name,
-            first_name: user.first_name,
+            username: user.username,
             email: user.email
         });
     }else{
@@ -33,7 +32,7 @@ const login = asyncHandler(async (req, res) => {
 // @route POST /api/user/register
 // @access Public
 const register = asyncHandler(async (req, res) => {
-    const {last_name, first_name, email, password} = req.body;
+    const {username, email, password} = req.body;
 
     if(!email || !password || email === '' || password === ''){
         res.status(400);
@@ -49,8 +48,7 @@ const register = asyncHandler(async (req, res) => {
 
     // Creating the user
     const user = await User.create({
-        last_name,
-        first_name,
+        username,
         email,
         password
     });
@@ -59,8 +57,7 @@ const register = asyncHandler(async (req, res) => {
         generateToken(res, user._id);
         res.status(201).json({
             _id: user._id,
-            last_name: user.last_name,
-            first_name: user.first_name,
+            username: user.username,
             email: user.email,
         });
     }else{
@@ -80,8 +77,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
         throw new Error("The user doesn't exists.");
     }
 
-    user.last_name = req.body.last_name || user.last_name;
-    user.first_name = req.body.first_name || user.first_name;
+    user.username = req.body.username || user.username;
     user.email = req.body.email || user.email;
 
     if(req.body.password){
@@ -93,8 +89,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     if(updateUserProfile){
         res.status(201).json({
             _id: updateUserProfile._id,
-            last_name: updateUserProfile.last_name,
-            first_name: updateUserProfile.first_name,
+            username: updateUserProfile.username,
             email: updateUserProfile.email
         });
     }else{
@@ -123,8 +118,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
     if(user){
         res.status(200).json({
             _id: user._id,
-            last_name: user.last_name,
-            first_name: user.first_name,
+            username: user.username,
             email: user.email
         });
     }else{
