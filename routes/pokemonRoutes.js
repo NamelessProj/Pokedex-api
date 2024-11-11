@@ -20,11 +20,12 @@ router.route('/').post(pokemonController.createPokemon);
 // @route Pokemon route (PUT)
 // @desc Route to modified a pokemon
 // @access Private (admin)
-router.route('/:id').delete(pokemonController.deletePokemon);
+router.route('/:id').put(pokemonController.updatePokemon);
 
 // @route Pokemon route (DELETE)
 // @desc Route to delete a pokemon
 // @access Private (admin)
+router.route('/:id').delete(pokemonController.deletePokemon);
 
 // @route Pokemon route (GET)
 // @desc Route to get a pokemon using his id
