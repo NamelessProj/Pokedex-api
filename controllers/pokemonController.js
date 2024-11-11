@@ -27,7 +27,7 @@ const getSinglePokemon = asyncHandler(async (req, res) => {
 });
 
 // @desc Getting a pokemon from the DB using his id
-// @route GET /api/pokemon/id
+// @route GET /api/pokemon/single/:id
 // @access Public
 const getPokemonById = asyncHandler(async (req, res) => {
     const pokemon = await PokemonModel.findById(req.params.id);
